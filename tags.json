@@ -9,10 +9,10 @@
     },
     {
       "name": "testing",
-      "version": "0.2.0.1448",
-      "commit": "f8ae1ba",
-      "upstream": "develop",
-      "lastUpdated": "2022-03-29T01:46:52.209Z"
+      "version": "",
+      "commit": "",
+      "upstream": "",
+      "lastUpdated": ""
     },
     {
       "name": "nightly",
@@ -22,6 +22,6 @@
       "lastUpdated": "2022-04-02T20:10:48.140Z"
     }
   ],
-  "pulls": 8891438,
-  "stars": 9
+  "pulls": 0,
+  "stars": 0
 }
