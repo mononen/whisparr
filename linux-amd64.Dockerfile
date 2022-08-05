@@ -1,4 +1,4 @@
-FROM cr.hotio.dev/hotio/base@sha256:51b4032b5584538d5987a759e74201ef2626502750efe77d4f7124eb56284c4e
+FROM adoah/base
 
 EXPOSE 6969
 
@@ -6,7 +6,7 @@ RUN apk add --no-cache libintl sqlite-libs icu-libs
 
 ARG VERSION
 ARG PACKAGE_VERSION=${VERSION}
-RUN usermod -u 568 && usermod -g 568
+RUN usermod -u 568 hotio
 RUN mkdir "${APP_DIR}/bin" && \
     curl -fsSL "https://whisparr.servarr.com/v1/update/nightly/updatefile?version=${VERSION}&os=linuxmusl&runtime=netcore&arch=x64" | tar xzf - -C "${APP_DIR}/bin" --strip-components=1 && \
     rm -rf "${APP_DIR}/bin/Whisparr.Update" && \
