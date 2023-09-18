@@ -1,14 +1,14 @@
-ARG UPSTREAM_IMAGE
-ARG UPSTREAM_DIGEST_AMD64
+ARG UPSTREAM_IMAGE=adoah/base
+ARG UPSTREAM_VERSION=latest
 
-FROM ${UPSTREAM_IMAGE}@${UPSTREAM_DIGEST_AMD64}
+FROM ${UPSTREAM_IMAGE}:${UPSTREAM_VERSION}
 EXPOSE 6969
 VOLUME ["${CONFIG_DIR}"]
 
 RUN apk add --no-cache libintl sqlite-libs icu-libs
 
-ARG VERSION
-ARG SBRANCH
+ARG VERSION=2.0.0.269
+ARG SBRANCH=nightly
 ARG PACKAGE_VERSION=${VERSION}
 RUN usermod -u 568 hotio
 RUN mkdir "${APP_DIR}/bin" && \
@@ -16,5 +16,3 @@ RUN mkdir "${APP_DIR}/bin" && \
     rm -rf "${APP_DIR}/bin/Whisparr.Update" && \
     echo -e "PackageVersion=${PACKAGE_VERSION}\nPackageAuthor=[hotio](https://github.com/hotio)\nUpdateMethod=Docker\nBranch=${SBRANCH}" > "${APP_DIR}/package_info" && \
     chmod -R u=rwX,go=rX "${APP_DIR}"
-
-COPY root/ /
