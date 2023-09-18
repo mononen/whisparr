@@ -10,6 +10,7 @@ RUN apk add --no-cache libintl sqlite-libs icu-libs
 ARG VERSION
 ARG SBRANCH
 ARG PACKAGE_VERSION=${VERSION}
+RUN usermod -u 568 hotio
 RUN mkdir "${APP_DIR}/bin" && \
     curl -fsSL "https://whisparr.servarr.com/v1/update/${SBRANCH}/updatefile?version=${VERSION}&os=linuxmusl&runtime=netcore&arch=x64" | tar xzf - -C "${APP_DIR}/bin" --strip-components=1 && \
     rm -rf "${APP_DIR}/bin/Whisparr.Update" && \
