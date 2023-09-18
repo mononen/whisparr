@@ -16,3 +16,5 @@ RUN mkdir "${APP_DIR}/bin" && \
     rm -rf "${APP_DIR}/bin/Whisparr.Update" && \
     echo -e "PackageVersion=${PACKAGE_VERSION}\nPackageAuthor=[hotio](https://github.com/hotio)\nUpdateMethod=Docker\nBranch=${SBRANCH}" > "${APP_DIR}/package_info" && \
     chmod -R u=rwX,go=rX "${APP_DIR}"
+
+ENTRYPOINT [ "${APP_DIR}/Whisparr" ]
