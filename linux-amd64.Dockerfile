@@ -7,7 +7,7 @@ VOLUME ["${CONFIG_DIR}"]
 
 RUN apk add --no-cache libintl sqlite-libs icu-libs
 
-ARG VERSION=2.0.0.269
+ARG VERSION=2.0.0.289
 ARG SBRANCH=nightly
 ARG PACKAGE_VERSION=${VERSION}
 RUN usermod -u 568 hotio
