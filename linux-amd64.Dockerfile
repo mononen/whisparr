@@ -1,14 +1,13 @@
 ARG UPSTREAM_IMAGE=adoah/base
 ARG UPSTREAM_VERSION=latest
-ARG CONFIG_DIR=/config
 
 FROM ${UPSTREAM_IMAGE}:${UPSTREAM_VERSION}
 EXPOSE 6969
 VOLUME ["${CONFIG_DIR}"]
 
-RUN apk add --no-cache libintl sqlite-libs icu-libs
+RUN apk add --no-cache libintl sqlite-libs icu-libs envsubst
 
-ARG VERSION=2.0.0.289
+ARG VERSION=3.0.0.481
 ARG SBRANCH=nightly
 ARG PACKAGE_VERSION=${VERSION}
 RUN usermod -u 568 hotio
@@ -18,4 +17,11 @@ RUN mkdir "${APP_DIR}/bin" && \
     echo -e "PackageVersion=${PACKAGE_VERSION}\nPackageAuthor=[hotio](https://github.com/hotio)\nUpdateMethod=Docker\nBranch=${SBRANCH}" > "${APP_DIR}/package_info" && \
     chmod -R u=rwX,go=rX "${APP_DIR}"
 
-ENTRYPOINT [ "/app/bin/Whisparr" ]
+COPY ./entrypoint.sh /init
+RUN chmod +x /init && \
+    chown -R hotio:hotio "${APP_DIR}" "${CONFIG_DIR}"
+
+USER hotio
+
+COPY ./config.xml.tmpl /app/config.xml.tmpl
+# ENTRYPOINT ["/entrypoint.sh"]
