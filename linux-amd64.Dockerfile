@@ -7,8 +7,8 @@ VOLUME ["${CONFIG_DIR}"]
 
 RUN apk add --no-cache libintl sqlite-libs icu-libs envsubst
 
-ARG VERSION=3.0.0.481
-ARG SBRANCH=nightly
+ARG VERSION=3.0.0.459
+ARG SBRANCH=eros
 ARG PACKAGE_VERSION=${VERSION}
 RUN usermod -u 568 hotio
 RUN mkdir "${APP_DIR}/bin" && \
